@@ -1,34 +1,31 @@
 <div class="actions columns large-2 medium-3">
-    <h3><?= __('Actions') ?></h3>
+    <h3><?= __('Menú') ?></h3>
     <ul class="side-nav">
-        <li><?= $this->Html->link(__('Edit User'), ['action' => 'edit', $user->id]) ?> </li>
-        <li><?= $this->Form->postLink(__('Delete User'), ['action' => 'delete', $user->id], ['confirm' => __('Are you sure you want to delete # {0}?', $user->id)]) ?> </li>
-        <li><?= $this->Html->link(__('List Users'), ['action' => 'index']) ?> </li>
-        <li><?= $this->Html->link(__('New User'), ['action' => 'add']) ?> </li>
-        <li><?= $this->Html->link(__('List Polls'), ['controller' => 'Polls', 'action' => 'index']) ?> </li>
-        <li><?= $this->Html->link(__('New Poll'), ['controller' => 'Polls', 'action' => 'add']) ?> </li>
+        <li><?= $this->Html->link(__('Usuarios'), ['action' => 'index']) ?></li>
+        <li><?= $this->Html->link(__('Encuestas'), ['controller' => 'Polls', 'action' => 'index']) ?> </li>
     </ul>
 </div>
 <div class="users view large-10 medium-9 columns">
-    <h2><?= h($user->id) ?></h2>
+    <h2><?= h($user->first_name.' '.$user->last_name) ?></h2>
     <div class="row">
         <div class="large-5 columns strings">
-            <h6 class="subheader"><?= __('Email') ?></h6>
-            <p><?= h($user->email) ?></p>
-            <h6 class="subheader"><?= __('Password') ?></h6>
-            <p><?= h($user->password) ?></p>
-            <h6 class="subheader"><?= __('Username') ?></h6>
+            <h6 class="subheader"><?= __('Usuario') ?></h6>
             <p><?= h($user->username) ?></p>
-            <h6 class="subheader"><?= __('Role') ?></h6>
+            <h6 class="subheader"><?= __('Correo') ?></h6>
+            <p><?= h($user->email) ?></p>
+            <h6 class="subheader"><?= __('Contraseña') ?></h6>
+            <p>••••••••••</p>
+            <h6 class="subheader"><?= __('Rol') ?></h6>
             <p><?= h($user->role) ?></p>
-            <h6 class="subheader"><?= __('First Name') ?></h6>
+            <h6 class="subheader"><?= __('Nombre') ?></h6>
             <p><?= h($user->first_name) ?></p>
-            <h6 class="subheader"><?= __('Last Name') ?></h6>
+            <h6 class="subheader"><?= __('Apellido') ?></h6>
             <p><?= h($user->last_name) ?></p>
         </div>
         <div class="large-2 columns numbers end">
-            <h6 class="subheader"><?= __('Id') ?></h6>
-            <p><?= $this->Number->format($user->id) ?></p>
+            <h6 class="subheader"><?= __('Acciones') ?></h6>
+            <?= $this->Html->link(__('Editar Usuario'), ['action' => 'edit', $user->id]) ?>
+            <?= $this->Form->postLink(__('Borrar Usuario'), ['action' => 'delete', $user->id], ['confirm' => __('¿Esta seguro que desea eliminar el usuario <{0}>?', $user->username)]) ?>
         </div>
         <div class="large-2 columns dates end">
             <h6 class="subheader"><?= __('Created') ?></h6>
@@ -38,41 +35,35 @@
         </div>
     </div>
 </div>
+
 <div class="related row">
     <div class="column large-12">
-    <h4 class="subheader"><?= __('Related Polls') ?></h4>
+    <br/>
+    <h4 class="subheader"><?= __('Encuestas de '.$user->first_name.' '.$user->last_name) ?></h4>
     <?php if (!empty($user->polls)): ?>
     <table cellpadding="0" cellspacing="0">
         <tr>
-            <th><?= __('Id') ?></th>
-            <th><?= __('User Id') ?></th>
-            <th><?= __('Title') ?></th>
-            <th><?= __('Description') ?></th>
-            <th><?= __('Url') ?></th>
-            <th><?= __('Pstate') ?></th>
-            <th><?= __('Logo') ?></th>
+            <th><?= __('Titulo') ?></th>
+            <th><?= __('Descripción') ?></th>
+            <th><?= __('URL') ?></th>
+            <th><?= __('Estado') ?></th>
             <th><?= __('Created') ?></th>
-            <th><?= __('Modified') ?></th>
             <th class="actions"><?= __('Actions') ?></th>
         </tr>
         <?php foreach ($user->polls as $polls): ?>
         <tr>
-            <td><?= h($polls->id) ?></td>
-            <td><?= h($polls->user_id) ?></td>
             <td><?= h($polls->title) ?></td>
             <td><?= h($polls->description) ?></td>
             <td><?= h($polls->url) ?></td>
             <td><?= h($polls->pstate) ?></td>
-            <td><?= h($polls->logo) ?></td>
             <td><?= h($polls->created) ?></td>
-            <td><?= h($polls->modified) ?></td>
 
             <td class="actions">
-                <?= $this->Html->link(__('View'), ['controller' => 'Polls', 'action' => 'view', $polls->id]) ?>
+                <?= $this->Html->link(__('Ver'), ['controller' => 'Polls', 'action' => 'view', $polls->id]) ?>
 
-                <?= $this->Html->link(__('Edit'), ['controller' => 'Polls', 'action' => 'edit', $polls->id]) ?>
+                <?= $this->Html->link(__('Editar'), ['controller' => 'Polls', 'action' => 'edit', $polls->id]) ?>
 
-                <?= $this->Form->postLink(__('Delete'), ['controller' => 'Polls', 'action' => 'delete', $polls->id], ['confirm' => __('Are you sure you want to delete # {0}?', $polls->id)]) ?>
+                <?= $this->Form->postLink(__('Borrar'), ['controller' => 'Polls', 'action' => 'delete', $polls->id], ['confirm' => __('¿Esta seguro que desea eliminar esta encuesta?')]) ?>
 
             </td>
         </tr>
