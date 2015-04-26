@@ -48,8 +48,11 @@ class UsersTable extends Table
             ->notEmpty('password')
             ->requirePresence('username', 'create')
             ->notEmpty('username')
-            ->requirePresence('role', 'create')
-            ->notEmpty('role')
+            ->notEmpty('role', 'El Rol es obligatorio')
+            ->add('role', 'inList', [
+                'rule' => ['inList', ['Administrador', 'Usuario']],
+                'message' => 'Ingrese un Rol valido'
+            ])
             ->requirePresence('first_name', 'create')
             ->notEmpty('first_name')
             ->allowEmpty('last_name')

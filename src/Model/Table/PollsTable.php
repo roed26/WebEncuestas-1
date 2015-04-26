@@ -50,6 +50,10 @@ class PollsTable extends Table
             ->allowEmpty('description')
             ->allowEmpty('url')
             ->allowEmpty('pstate')
+            ->add('pstate', 'inList', [
+                'rule' => ['inList', ['En Construccion', 'Abierta al publico', 'Cerrada al publico']],
+                'message' => 'Ingrese un estado valido'
+            ])
             ->allowEmpty('logo');
 
         return $validator;

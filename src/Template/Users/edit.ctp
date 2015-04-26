@@ -26,6 +26,6 @@
             )
         ?>
     </fieldset>
-    <?= $this->Form->button(__('Submit')) ?>
+    <?= $this->Form->button(__('Editar')) ?>
     <?= $this->Form->end() ?>
 </div>

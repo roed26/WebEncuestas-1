@@ -52,9 +52,10 @@ class PollsController extends AppController
         if ($this->request->is('post')) {
             $poll = $this->Polls->patchEntity($poll, $this->request->data);
             $poll->user_id = $this->Auth->user('id');
+            $poll->pstate = 'En Construccion';
             if ($this->Polls->save($poll)) {
                 $this->Flash->success('La encuesta ha sido agregada.');
-                return $this->redirect(['action' => 'index']);
+                return $this->redirect(['action' => 'view', $poll->id]);//redirigir a agregar Preguntas
             } else {
                 $this->Flash->error('La encuesta no se ha agregado. Por favor, intente otra vez.');
             }
